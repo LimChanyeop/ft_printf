@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:06 by clim              #+#    #+#             */
-/*   Updated: 2021/02/02 10:56:52 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/02 19:40:18 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		init_flag(t_flag *flag) // flag 초기화
 	flag->width = 0;
 	flag->prec = 0;
 	flag->len = 0;
+	flag->sign_n = 0;
 	flag->type = '\0';
 }
 

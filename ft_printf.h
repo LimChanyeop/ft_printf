@@ -11,7 +11,8 @@
 typedef struct s_flag{
 	bool		minus;
 	bool		zero;
-	bool		dot;
+	bool		sing_n;
+	int			dot;
 	int			width;
 	int			len;
 	int			prec;
