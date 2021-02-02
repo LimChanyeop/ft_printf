@@ -6,7 +6,7 @@
 #    By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/28 14:20:34 by clim              #+#    #+#              #
-#    Updated: 2021/01/28 14:35:52 by clim             ###   ########.fr        #
+#    Updated: 2021/02/01 13:54:16 by clim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,17 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 
 $(OBJECTS) : $(SRCS) $(LIB)
-	@gcc -Wextra -Werror -Wall -c -g -I . $(LIB) $(SRCS)
-	@ar rcs $(NAME) $(OBJECTS)
+	gcc -Wextra -Werror -Wall -c -g -I . $(LIB) $(SRCS)
+	make -C ./libft all
+	cp libft/libft.a $(NAME)
+	ar rcs $(NAME) $(OBJECTS)
 
 clean:
-	@rm -rf $(OBJECTS)
+	rm -rf $(OBJECTS)
+	make -C ./libft clean
 
 fclean: clean
-	@rm -rf $(NAME)
-	@rm -rf *.gch
+	rm -rf $(NAME)
+	rm -rf *.gch
 
 re: fclean all
