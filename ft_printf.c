@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:06 by clim              #+#    #+#             */
-/*   Updated: 2021/02/02 19:40:18 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/03 15:59:02 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,16 @@ char		set_flag(va_list ap, t_flag *flag, char *format, int idx) // flag 처리
 	return (flag->type);
 }
 
-int		handle(va_list ap, t_flag *flag, char type) //type 별로 print 호출
-{
+int			handle(va_list ap, t_flag *flag, char type) //type 별로 print 호출
+{	
+	int 	cnt;
+
+	cnt = 0;
 	if (type == 'd')
-		handle_d(ap, flag);
-	return (0);;
+		cnt += handle_d(ap, flag);
+	if (type == 'c')
+		cnt += handle_c(ap, flag);
+	return (cnt);
 }
 
 void print_flag(t_flag *flag)
@@ -104,12 +109,11 @@ int			ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			init_flag(&flag);
-			handle(ap, &flag, set_flag(ap, &flag, (char *)(format), type_idx((char *)format)));
-			print_flag(&flag);
+			ret_cnt += handle(ap, &flag, set_flag(ap, &flag, (char *)(format), type_idx((char *)format)));
 			format += type_idx((char *)format);
 		}
 		else
-			ft_putchar_fd((char)*format, 1);
+			ret_cnt += write(1, (char *)format, 1);
 		format++;
 	}
 	return (ret_cnt);

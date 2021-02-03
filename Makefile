@@ -6,7 +6,7 @@
 #    By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/28 14:20:34 by clim              #+#    #+#              #
-#    Updated: 2021/02/01 13:54:16 by clim             ###   ########.fr        #
+#    Updated: 2021/02/03 11:55:24 by clim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,5 +35,8 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	rm -rf *.gch
+
+test:
+	gcc main.c -L. -lftprintf
 
 re: fclean all
