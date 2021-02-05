@@ -6,14 +6,14 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:06 by clim              #+#    #+#             */
-/*   Updated: 2021/02/03 15:59:02 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/05 12:45:09 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-void		init_flag(t_flag *flag) // flag 초기화
+static void		init_flag(t_flag *flag) // flag 초기화
 {
 	flag->minus = 0;
 	flag->zero = 0;
@@ -25,7 +25,7 @@ void		init_flag(t_flag *flag) // flag 초기화
 	flag->type = '\0';
 }
 
-int			type_idx(char *format) // type 위치반환
+static int			type_idx(char *format) // type 위치반환
 {
 	int		i;
 
@@ -34,7 +34,7 @@ int			type_idx(char *format) // type 위치반환
 	{
 		if (format[i] == 'c' || format[i] == 's' || format[i] == 'p' \
 				|| format[i] == 'd' || format[i] == 'i' || format[i] == 'u' \
-				|| format[i] == 'x' || format[i] == 'X')
+				|| format[i] == 'x' || format[i] == 'X' ||format[i] == '%')
 			return (i);
 		else
 			i++;
@@ -42,7 +42,7 @@ int			type_idx(char *format) // type 위치반환
 	return (-1);
 }
 
-char		set_flag(va_list ap, t_flag *flag, char *format, int idx) // flag 처리
+static char		set_flag(va_list ap, t_flag *flag, char *format, int idx) // flag 처리
 {
 	int		i;
 
@@ -78,25 +78,35 @@ char		set_flag(va_list ap, t_flag *flag, char *format, int idx) // flag 처리
 	return (flag->type);
 }
 
-int			handle(va_list ap, t_flag *flag, char type) //type 별로 print 호출
+static int			handle(va_list ap, t_flag *flag, char type) //type 별로 print 호출
 {	
-	int 	cnt;
+	int 			cnt;
 
 	cnt = 0;
-	if (type == 'd')
+	if (type == 'd' || type == 'i')
 		cnt += handle_d(ap, flag);
 	if (type == 'c')
 		cnt += handle_c(ap, flag);
+	if (type == 'u')
+		cnt += handle_u(ap, flag);
+	if (type == 's')
+		cnt += handle_s(ap, flag);
+	if (type == 'x' || type == 'X')
+		cnt += handle_x(ap, flag);
+	/*if (type == 'p')
+		cnt += handle_p(ap, flag);
+	if (type == '%')
+		cnt += handle_pct(flag);*/
 	return (cnt);
 }
 
-void print_flag(t_flag *flag)
+void 				print_flag(t_flag *flag)
 {
 	printf("flag->minus = %d || flag->zero = %d	|| flag->dot = %d || flag->width = %d || flag->len = %d || flag-> prec = %d || flag->type = %c\n", \
 			 flag->minus, flag->zero, flag->dot, flag->width, flag->len, flag->prec, flag->type);
 }
 
-int			ft_printf(const char *format, ...)
+int					ft_printf(const char *format, ...)
 {
 	va_list ap;
 	int		ret_cnt;
