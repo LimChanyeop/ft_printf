@@ -6,18 +6,19 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 14:31:12 by clim              #+#    #+#             */
-/*   Updated: 2021/02/04 16:28:52 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/08 12:55:16 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int					print_pct(t_flag *flag)
+void					print_pct()
 {
-	
+	write(1, "%%", 1);
 }
 
-int					handle_pct(t_flag *flag)
+int						handle_pct()
 {
-
+	print_pct();
+	return (1);
 }

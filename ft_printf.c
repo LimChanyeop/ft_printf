@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:06 by clim              #+#    #+#             */
-/*   Updated: 2021/02/07 16:18:19 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/08 12:55:10 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ static int			handle(va_list ap, t_flag *flag, char type) //type 별로 print 호
 		cnt += handle_x(ap, flag);
 	if (type == 'p')
 		cnt += handle_p(ap, flag);
-	/*if (type == '%')
-		cnt += handle_pct(flag);*/
+	if (type == '%')
+		cnt += handle_pct();
 	return (cnt);
 }
 
