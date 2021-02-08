@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:03:01 by clim              #+#    #+#             */
-/*   Updated: 2021/02/04 16:51:56 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/08 10:21:55 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ int					print_u(unsigned int i, t_flag *flag)
 	if (!flag->dot)
 	{
 		if (flag->zero || flag->minus)
-			flag->minus ? ft_putnbr(i) : (cnt += handle_width(flag, get_int_len(i)));
+			flag->minus ? cnt += ft_putnbr(i) : (cnt += handle_width(flag, get_int_len(i)));
 		else
-			handle_width(flag, get_int_len(i));
+			cnt += handle_width(flag, get_int_len(i));
 		flag->minus ? (cnt += handle_width(flag, get_int_len(i))) : ft_putnbr(i);
 	}
 	else if (flag->dot)
 	{
 		(!flag->minus && flag->prec >= 0) ? (cnt += handle_width(flag, get_int_len(i))) : 0;
-		handle_prec(flag, get_int_len(i));
-		i ? ft_putnbr(i) : 0;
+		cnt += handle_prec(flag, get_int_len(i));
+		i ? cnt += ft_putnbr(i) : 0;
 		flag->minus ? (cnt += handle_width(flag, get_int_len(i))) : 0;
 	}
 	return (cnt);

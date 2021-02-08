@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_width.c                                     :+:      :+:    :+:   */
+/*   handle_option.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 19:12:36 by clim              #+#    #+#             */
-/*   Updated: 2021/02/03 12:19:20 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/08 11:01:19 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				handle_width(t_flag *flag, int len)
 	l1 = len > flag->prec ? len : flag->prec;
 	i = flag->width;
 	while (i-- > l1)
-		flag->zero ? (cnt += write (1, "0", 1)) : (cnt += write(1, " ", 1));
+		flag->zero ? (cnt += write(1, "0", 1)) : (cnt += write(1, " ", 1));
 	return (cnt);
 }
 

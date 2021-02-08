@@ -6,19 +6,26 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 17:59:47 by clim              #+#    #+#             */
-/*   Updated: 2021/02/05 14:09:56 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/08 11:10:55 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <stdio.h>
 int main()
 {
-	ft_printf("s = |%-10.3s|\n", "string");
-	ft_printf("d = |%-10.3d|\n", 1234);
-	ft_printf("i = |%-10.3i|\n", 1234);
-	ft_printf("u = |%-10.3u|\n", 1234);
-	ft_printf("c = |%-10c|\n", 'c');
-	ft_printf("x = |%-10.2x|\n", 1234);
-	ft_printf("X = |%-10X|\n", 1234);
+	int  ret;
+	//ret = ft_printf("s = |%s|\n", "string");
+	//printf("\nret=%d\n", ret);
+	ret = ft_printf("%99d", 1234);
+	printf("\nret=%d\n", ret);
+	//ret = ft_printf("i = |%-10.6i|\n", 1234);
+	//printf("\nret=%d\n", ret);
+	//ret = ft_printf("u = |%-9.6u|\n", 1234);
+	//printf("\nret=%d\n", ret); 
+	//ret = ft_printf("c = |%-10c|\n", 'c');
+	//printf("\nret=%d\n", ret); 
+	//ret = ft_printf("x = |%-10.2x|\n", 1234);
+	//printf("\nret=%d\n", ret);
+	//ret = ft_printf("p = |%p|\n", &a);
 }
