@@ -6,15 +6,24 @@
 #    By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/28 14:20:34 by clim              #+#    #+#              #
-#    Updated: 2021/02/03 11:55:24 by clim             ###   ########.fr        #
+#    Updated: 2021/02/08 17:56:21 by clim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = *.c
+SRCS = ft_printf.c \
+		handle_c.c \
+		handle_option.c \
+		handle_d_i.c \
+		handle_p.c \
+		handle_pct.c \
+		handle_s.c \
+		handle_u.c \
+		handle_x.c \
+		util.c
 
-OBJECTS = *.o
+OBJECTS = $(SRCS:%.c=%.o)
 
 LIB = ft_printf.h
 
