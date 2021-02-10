@@ -81,7 +81,10 @@ int					handle_p(va_list ap, t_flag *flag)
 
 	cnt = 0;
 	value_p = va_arg(ap, long long);
-	p = ft_itop(value_p);
+	if (!value_p && flag->dot && !flag->prec)
+		p = ft_strdup("0x");
+	else
+		p = ft_itop(value_p);
 	cnt += print_p(p, flag);	
 	free(p);
 	return (cnt);
