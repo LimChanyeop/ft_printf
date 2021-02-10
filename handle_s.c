@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 11:01:33 by clim              #+#    #+#             */
-/*   Updated: 2021/02/08 11:58:29 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/10 14:36:13 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int					handle_s(va_list ap, t_flag *flag)
 	flag->zero = 0;
 	value_s = va_arg(ap, char *);
 	if (!value_s)
-		value_s = "(null)";
+		value_s = ft_strdup("(null)");
 	flag->len = ft_strlen(value_s);
 	if (flag->dot && flag->prec >= 0)
 		ft_strlen(value_s) > (size_t)flag->prec ? flag->len = flag->prec : 0;

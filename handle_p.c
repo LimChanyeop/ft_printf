@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 16:27:35 by clim              #+#    #+#             */
-/*   Updated: 2021/02/08 11:12:56 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/10 14:29:59 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char			*ft_itop(long long n)
 	ft_bzero(arr, 17);
 	if (n == 0)
 		return (ft_strdup("0x0"));
-	idx = 2;
+	idx = 0;
 	while (n > 0)
 	{
 		arr[idx++] = hex[n % 16];

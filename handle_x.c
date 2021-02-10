@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 14:24:36 by clim              #+#    #+#             */
-/*   Updated: 2021/02/10 12:07:51 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/10 14:30:00 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int					handle_x(va_list ap, t_flag *flag)
 		x = ft_strdup("");
 	else
 		x = ft_itox(value_x, (flag->type == 'X'));
-	cnt += print_x(x, flag);	
+	cnt += print_x(x, flag);
 	free(x);
 	return (cnt);
 }
