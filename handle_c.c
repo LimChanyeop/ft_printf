@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:21:38 by clim              #+#    #+#             */
-/*   Updated: 2021/02/03 15:58:17 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/10 14:44:12 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int					print_c(char c, t_flag *flag)
 	int				cnt;
 
 	cnt = 0;
+	if ((flag->zero && flag->minus) || (flag->dot && flag->prec >= 0))
+		flag->zero = 0;
 	if (flag->minus)
 	{
 		cnt += write(1, &c, 1);
