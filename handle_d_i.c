@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 12:02:18 by clim              #+#    #+#             */
-/*   Updated: 2021/02/08 14:54:19 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/10 10:17:34 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			print_d(long long i, t_flag *flag)
 	int		cnt;
 
 	cnt = 0;
-	if (!flag->dot)
+	if (!flag->dot || flag->prec < 0)
 	{
 		if (flag->zero || flag->minus)
 		{

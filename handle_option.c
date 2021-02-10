@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 19:12:36 by clim              #+#    #+#             */
-/*   Updated: 2021/02/08 11:01:19 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/10 10:19:17 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int				handle_sign(t_flag *flag)
 	if (flag->sign_n)
 	{
 		write (1, "-", 1); 
-		flag->width--;
+		//flag->width--;
 		return (1);
 	}
 	return (0);

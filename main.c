@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 17:59:47 by clim              #+#    #+#             */
-/*   Updated: 2021/02/08 11:10:55 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/09 16:36:10 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main()
 	int  ret;
 	//ret = ft_printf("s = |%s|\n", "string");
 	//printf("\nret=%d\n", ret);
-	ret = ft_printf("%99d", 1234);
+	ret = ft_printf("|%5.d|", 0);
 	printf("\nret=%d\n", ret);
 	//ret = ft_printf("i = |%-10.6i|\n", 1234);
 	//printf("\nret=%d\n", ret);
