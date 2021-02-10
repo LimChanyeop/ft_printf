@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:06 by clim              #+#    #+#             */
-/*   Updated: 2021/02/09 16:48:20 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/10 10:28:14 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char		set_flag(va_list ap, t_flag *flag, char *format, int idx) // flag ì
 
 	flag->type = format[idx];
 	i = 1;
-	while ((format[i] == '0' || format[i] == '-') && i < idx)
+	while ((format[i] == '0' || format[i] == '-'))
 	{
 		if (format[i] == '0')
 			flag->zero = 1;
@@ -56,7 +56,7 @@ static char		set_flag(va_list ap, t_flag *flag, char *format, int idx) // flag ì
 			flag->minus = 1;
 		i++;
 	}
-	if (format[i] == '*' && i < idx)
+	if (format[i] == '*')
 	{
 		flag->width = va_arg(ap, int);
 		if (flag->width < 0)

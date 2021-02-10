@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 11:01:04 by clim              #+#    #+#             */
-/*   Updated: 2021/02/08 12:54:48 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/10 11:03:21 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int				print_x(char *x, t_flag *flag);
 int				print_p(char *p, t_flag *flag);
 void			print_pct();
 
-int				get_int_len(long long i);
+int				get_int_len(long long i, t_flag *flag);
 
 
 #endif

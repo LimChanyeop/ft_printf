@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: sangjwoohpa <sangjwoohpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 13:08:51 by clim              #+#    #+#             */
-/*   Updated: 2021/02/08 12:41:36 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/10 11:03:11 by sangjwoohpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int				ft_putnbr(long long n)
 	return (cnt);
 }
 
-int			get_int_len(long long i)
+int			get_int_len(long long i, t_flag *flag)
 {
 	int len = 0;
 
-	if (i == 0)
-		return (0);
+	if (i == 0 && (!flag->dot || flag->prec < 0))
+		return (1);
 	if (i < 0)
 	{
 		i *= -1;	

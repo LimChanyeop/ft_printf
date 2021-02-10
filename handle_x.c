@@ -6,12 +6,13 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 14:24:36 by clim              #+#    #+#             */
-/*   Updated: 2021/02/05 12:48:48 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/10 12:07:51 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
 static char			*allocate(char *arr, char *a, int idx)
 {
 	int			i;
@@ -56,7 +57,7 @@ int					print_x(char *x, t_flag *flag)
 
 	cnt = 0;
 	len = ft_strlen(x);
-	if (!flag->dot)
+	if (!flag->dot || flag->prec < 0)
 	{
 		if (flag->zero || flag->minus)
 			flag->minus ? (cnt += put_str(x, len)) : (cnt += handle_width(flag, len));
@@ -82,7 +83,12 @@ int					handle_x(va_list ap, t_flag *flag)
 
 	cnt = 0;
 	value_x = va_arg(ap, unsigned int);
-	x = ft_itox(value_x, (flag->type == 'X'));
+	if ((flag->zero && flag->minus) || (flag->dot && flag->prec >= 0))
+		flag->zero = 0;
+	if (value_x == 0 && (flag->dot == 1 && flag->prec == 0))
+		x = ft_strdup("");
+	else
+		x = ft_itox(value_x, (flag->type == 'X'));
 	cnt += print_x(x, flag);	
 	free(x);
 	return (cnt);
