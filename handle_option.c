@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 19:12:36 by clim              #+#    #+#             */
-/*   Updated: 2021/02/10 11:35:58 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/10 15:08:03 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int				handle_width(t_flag *flag, int len)
 
 	cnt = 0;
 	l1 = len;
-	if (flag->type != 's')
+	if (flag->type != 's' && flag->type != '%')
 		l1 = len > flag->prec ? len : flag->prec;
 	i = flag->width;
 	while (i-- > l1)
