@@ -6,7 +6,7 @@
 #    By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/28 14:20:34 by clim              #+#    #+#              #
-#    Updated: 2021/02/08 17:56:21 by clim             ###   ########.fr        #
+#    Updated: 2021/02/10 13:44:44 by clim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,5 +47,8 @@ fclean: clean
 
 test:
 	gcc main.c -L. -lftprintf
+
+test1:
+	gcc main1.c -L. -lftprintf
 
 re: fclean all
