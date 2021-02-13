@@ -6,12 +6,11 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 14:24:36 by clim              #+#    #+#             */
-/*   Updated: 2021/02/10 14:30:00 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/13 20:06:24 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static char			*allocate(char *arr, char *a, int idx)
 {
@@ -60,14 +59,14 @@ int					print_x(char *x, t_flag *flag)
 	if (!flag->dot || flag->prec < 0)
 	{
 		if (flag->zero || flag->minus)
-			flag->minus ? (cnt += put_str(x, len)) : (cnt += handle_width(flag, len));
+			cnt += flag->minus ? put_str(x, len) : handle_width(flag, len);
 		else
 			cnt += handle_width(flag, len);
-		flag->minus ? (cnt += handle_width(flag, len)) : (cnt += put_str(x, len));
+		cnt += flag->minus ? handle_width(flag, len) : put_str(x, len);
 	}
 	else if (flag->dot)
 	{
-		(!flag->minus && flag->prec >= 0) ? (cnt += handle_width(flag, len)) : 0;
+		(!flag->minus && flag->prec >= 0) ? cnt += handle_width(flag, len) : 0;
 		cnt += handle_prec(flag, len);
 		cnt += put_str(x, len);
 		flag->minus ? (cnt += handle_width(flag, len)) : 0;
@@ -77,7 +76,7 @@ int					print_x(char *x, t_flag *flag)
 
 int					handle_x(va_list ap, t_flag *flag)
 {
-	unsigned int	value_x;	
+	unsigned int	value_x;
 	int				cnt;
 	char			*x;
 

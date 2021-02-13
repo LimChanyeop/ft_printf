@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 19:12:36 by clim              #+#    #+#             */
-/*   Updated: 2021/02/10 15:08:03 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/13 19:59:58 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,8 @@ int				handle_prec(t_flag *flag, int len)
 	cnt = 0;
 	i = flag->prec;
 	if (flag->dot)
-	{
 		while (i-- > len)
-		{
-			ft_putchar_fd('0', 1);
-			cnt++;
-		}
-	}
+			cnt += write(1, "0", 1);
 	return (cnt);
 }
 
@@ -50,8 +45,7 @@ int				handle_sign(t_flag *flag)
 {
 	if (flag->sign_n)
 	{
-		write (1, "-", 1); 
-		//flag->width--;
+		write(1, "-", 1);
 		return (1);
 	}
 	return (0);

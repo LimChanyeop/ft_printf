@@ -6,15 +6,14 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:06 by clim              #+#    #+#             */
-/*   Updated: 2021/02/13 15:19:02 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/13 20:28:49 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void			init_flag(t_flag *flag)
+static void		init_flag(t_flag *flag)
 {
-
 	flag->minus = 0;
 	flag->zero = 0;
 	flag->dot = 0;
@@ -25,16 +24,16 @@ static void			init_flag(t_flag *flag)
 	flag->type = '\0';
 }
 
-static int			type_idx(char *format)
+static int		type_idx(char *format)
 {
-	int				i;
+	int			i;
 
 	i = 1;
 	while (format[i])
 	{
 		if (format[i] == 'c' || format[i] == 's' || format[i] == 'p' \
 				|| format[i] == 'd' || format[i] == 'i' || format[i] == 'u' \
-				|| format[i] == 'x' || format[i] == 'X' ||format[i] == '%')
+				|| format[i] == 'x' || format[i] == 'X' || format[i] == '%')
 			return (i);
 		else
 			i++;
@@ -42,54 +41,9 @@ static int			type_idx(char *format)
 	return (-1);
 }
 
-void				set_flag(va_list ap, t_flag *flag, char *format, int idx)
+static int		handle(va_list ap, t_flag *flag, char type)
 {
-	int				i;
-
-	flag->type = format[idx];
-	i = 1;
-	while ((format[i] == '0' || format[i] == '-'))
-	{
-		if (format[i] == '0')
-			flag->zero = 1;
-		else
-			flag->minus = 1;
-		i++;
-	}
-	if (format[i] == '*')
-	{
-		flag->width = va_arg(ap, int);
-		if (flag->width < 0)
-		{
-			flag->minus = 1;
-			flag->width *= -1;
-		}
-		i++;
-	}	
-	else if (ft_isdigit(format[i]))
-	{
-		flag->width = ft_atoi(&format[i]);
-		if (flag->width < 0)
-		{
-			flag->minus = 1;
-			flag->width *= -1;
-		}
-		while(ft_isdigit(format[i]))
-			i++;
-	}
-	if (format[i++] == '.')
-	{
-		flag->dot = 1;
-		if(format[i] == '*')
-			flag->prec = va_arg(ap, int);		
-		else
-			flag->prec = ft_atoi(&format[i]);
-	}
-}
-
-static int			handle(va_list ap, t_flag *flag, char type)
-{	
-	int 			cnt;
+	int			cnt;
 
 	cnt = 0;
 	if (type == 'd' || type == 'i')
@@ -109,12 +63,12 @@ static int			handle(va_list ap, t_flag *flag, char type)
 	return (cnt);
 }
 
-int					ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
-	va_list			ap;
-	int				ret_cnt;
-	char			t_idx;
-	t_flag			flag;
+	va_list		ap;
+	int			ret_cnt;
+	char		t_idx;
+	t_flag		flag;
 
 	ret_cnt = 0;
 	va_start(ap, format);
@@ -124,7 +78,7 @@ int					ft_printf(const char *format, ...)
 		{
 			init_flag(&flag);
 			t_idx = type_idx((char *)format);
-			set_flag(ap, &flag, (char *)format, t_idx);
+			set_option(ap, &flag, (char *)format, t_idx);
 			ret_cnt += handle(ap, &flag, flag.type);
 			format += t_idx;
 		}

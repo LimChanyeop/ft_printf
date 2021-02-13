@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 16:27:35 by clim              #+#    #+#             */
-/*   Updated: 2021/02/10 14:29:59 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/13 20:04:25 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,15 @@ int					print_p(char *p, t_flag *flag)
 	if (!flag->dot)
 	{
 		if (flag->zero || flag->minus)
-			flag->minus ? (cnt += put_str(p, len)) : (cnt += handle_width(flag, len));
+			cnt += flag->minus ? put_str(p, len) : handle_width(flag, len);
 		else
 			cnt += handle_width(flag, len);
-		flag->minus ? (cnt += handle_width(flag, len)) : (cnt += put_str(p, len));
+		cnt += flag->minus ? handle_width(flag, len) : put_str(p, len);
 	}
 	else if (flag->dot)
 	{
-		(!flag->minus && flag->prec >= 0) ? (cnt += handle_width(flag, len)) : 0;
+		if (!flag->minus && flag->prec >= 0)
+			cnt += handle_width(flag, len);
 		cnt += handle_prec(flag, len);
 		cnt += put_str(p, len);
 		flag->minus ? (cnt += handle_width(flag, len)) : 0;
@@ -75,7 +76,7 @@ int					print_p(char *p, t_flag *flag)
 
 int					handle_p(va_list ap, t_flag *flag)
 {
-	long long		value_p;	
+	long long		value_p;
 	int				cnt;
 	char			*p;
 
@@ -85,7 +86,7 @@ int					handle_p(va_list ap, t_flag *flag)
 		p = ft_strdup("0x");
 	else
 		p = ft_itop(value_p);
-	cnt += print_p(p, flag);	
+	cnt += print_p(p, flag);
 	free(p);
 	return (cnt);
 }

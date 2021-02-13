@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 11:01:33 by clim              #+#    #+#             */
-/*   Updated: 2021/02/10 14:36:13 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/13 20:20:08 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ int					put_str(char *s, int len)
 	int				cnt;
 
 	cnt = 0;
-	while(len--)
-	{
-		cnt += write(1, s++, 1); 
-	}
+	while (len--)
+		cnt += write(1, s++, 1);
 	return (cnt);
 }
 

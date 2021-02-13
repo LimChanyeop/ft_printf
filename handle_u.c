@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_u.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangjwoohpa <sangjwoohpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/03 16:03:01 by clim              #+#    #+#             */
-/*   Updated: 2021/02/10 11:03:15 by sangjwoohpa         ###   ########.fr       */
+/*   Created: 2021/02/13 20:06:58 by clim              #+#    #+#             */
+/*   Updated: 2021/02/13 20:14:41 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,25 @@
 int					print_u(unsigned int i, t_flag *flag)
 {
 	int				cnt;
+	int				len;
 
 	cnt = 0;
+	len = get_int_len(i, flag);
 	if (!flag->dot || flag->prec < 0)
 	{
 		if (flag->zero || flag->minus)
-			flag->minus ? cnt += ft_putnbr(i) : (cnt += handle_width(flag, get_int_len(i, flag)));
+			cnt += flag->minus ? ft_putnbr(i) : handle_width(flag, len);
 		else
-			cnt += handle_width(flag, get_int_len(i, flag));
-		flag->minus ? (cnt += handle_width(flag, get_int_len(i, flag))) : (cnt += ft_putnbr(i));
+			cnt += handle_width(flag, len);
+		cnt += flag->minus ? handle_width(flag, len) : ft_putnbr(i);
 	}
 	else if (flag->dot)
 	{
-		(!flag->minus && flag->prec >= 0) ? (cnt += handle_width(flag, get_int_len(i, flag))) : 0;
-		cnt += handle_prec(flag, get_int_len(i, flag));
-		i ? cnt += ft_putnbr(i) : 0;
-		flag->minus ? (cnt += handle_width(flag, get_int_len(i, flag))) : 0;
+		if (!flag->minus && flag->prec >= 0)
+			cnt += handle_width(flag, len);
+		cnt += handle_prec(flag, len);
+		cnt += i ? ft_putnbr(i) : 0;
+		cnt += flag->minus ? handle_width(flag, len) : 0;
 	}
 	return (cnt);
 }

@@ -6,13 +6,14 @@
 #    By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/28 14:20:34 by clim              #+#    #+#              #
-#    Updated: 2021/02/10 13:44:44 by clim             ###   ########.fr        #
+#    Updated: 2021/02/13 20:33:23 by clim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRCS = ft_printf.c \
+	   	set_flag.c \
 		handle_c.c \
 		handle_option.c \
 		handle_d_i.c \

@@ -6,47 +6,45 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 11:22:45 by clim              #+#    #+#             */
-/*   Updated: 2021/02/13 15:17:38 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/13 18:35:19 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			print_d(long long i, t_flag *flag)
+void			print_d(long long i, t_flag *flag, int *cnt)
 {
-	int		cnt;
+	int			len;
 
-	cnt = 0;
+	len = get_int_len(i, flag);
 	if (!flag->dot || flag->prec < 0)
 	{
 		if (flag->zero || flag->minus)
 		{
-			cnt += handle_sign(flag);
-			cnt += flag->minus ? ft_putnbr(i) : handle_width(flag, get_int_len(i, flag));
+			*cnt += handle_sign(flag);
+			*cnt += flag->minus ? ft_putnbr(i) : handle_width(flag, len);
 		}
 		else
 		{
-			cnt += handle_width(flag, get_int_len(i, flag));
-			cnt += handle_sign(flag);
+			*cnt += handle_width(flag, len);
+			*cnt += handle_sign(flag);
 		}
-		cnt += flag->minus ? handle_width(flag, get_int_len(i, flag)) : ft_putnbr(i);
+		*cnt += flag->minus ? handle_width(flag, len) : ft_putnbr(i);
 	}
 	else if (flag->dot)
 	{
-		if (!flag->minus && flag->prec >= 0)
-			cnt += handle_width(flag, get_int_len(i, flag));
-		cnt += handle_sign(flag);
-		cnt += handle_prec(flag, get_int_len(i, flag));
-		i ? cnt += ft_putnbr(i) : 0;
-		flag->minus ? (cnt += handle_width(flag, get_int_len(i, flag))) : 0;
+		*cnt += !flag->minus && flag->prec >= 0 ? handle_width(flag, len) : 0;
+		*cnt += handle_sign(flag);
+		*cnt += handle_prec(flag, len);
+		i ? *cnt += ft_putnbr(i) : 0;
+		*cnt += flag->minus ? handle_width(flag, len) : 0;
 	}
-	return (cnt);
 }
 
-int			handle_d(va_list ap, t_flag *flag)
+int				handle_d(va_list ap, t_flag *flag)
 {
 	long long	value_d;
-	int		cnt;
+	int			cnt;
 
 	cnt = 0;
 	if ((flag->zero && flag->minus) || (flag->dot && flag->prec >= 0))
@@ -58,6 +56,6 @@ int			handle_d(va_list ap, t_flag *flag)
 		value_d *= -1;
 		flag->width--;
 	}
-	cnt += print_d(value_d, flag);
+	print_d(value_d, flag, &cnt);
 	return (cnt);
 }

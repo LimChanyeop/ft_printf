@@ -6,21 +6,21 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 14:31:12 by clim              #+#    #+#             */
-/*   Updated: 2021/02/10 15:14:08 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/13 20:19:12 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int					print_pct()
+int					print_pct(void)
 {
 	write(1, "%%", 1);
 	return (1);
 }
 
-int						handle_pct(t_flag *flag)
+int					handle_pct(t_flag *flag)
 {
-	int cnt;
+	int				cnt;
 
 	cnt = 0;
 	if ((flag->zero && flag->minus))
