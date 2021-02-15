@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 11:01:33 by clim              #+#    #+#             */
-/*   Updated: 2021/02/13 20:20:08 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/15 12:17:16 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,19 @@ int					put_str(char *s, int len)
 	return (cnt);
 }
 
-int					print_s(char *s, t_flag *flag)
+static void			print_s(char *s, t_flag *flag, int *cnt)
 {
-	int				cnt;
 
-	cnt = 0;
 	if (!flag->minus)
 	{
-		cnt += handle_width(flag, flag->len);
-		cnt += put_str(s, flag->len);
+		*cnt += handle_width(flag, flag->len);
+		*cnt += put_str(s, flag->len);
 	}
 	else
 	{
-		cnt += put_str(s, flag->len);
-		cnt += handle_width(flag, flag->len);
+		*cnt += put_str(s, flag->len);
+		*cnt += handle_width(flag, flag->len);
 	}
-	return (cnt);
 }
 
 int					handle_s(va_list ap, t_flag *flag)
@@ -53,6 +50,6 @@ int					handle_s(va_list ap, t_flag *flag)
 	flag->len = ft_strlen(value_s);
 	if (flag->dot && flag->prec >= 0)
 		ft_strlen(value_s) > (size_t)flag->prec ? flag->len = flag->prec : 0;
-	cnt += print_s(value_s, flag);
+	print_s(value_s, flag, &cnt);
 	return (cnt);
 }

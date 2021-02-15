@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 14:24:36 by clim              #+#    #+#             */
-/*   Updated: 2021/02/13 20:06:24 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/15 12:19:48 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,29 +49,26 @@ static char			*ft_itox(unsigned int n, int is_upper)
 	return (x);
 }
 
-int					print_x(char *x, t_flag *flag)
+static void			print_x(char *x, t_flag *flag, int *cnt)
 {
-	int				cnt;
 	int				len;
 
-	cnt = 0;
 	len = ft_strlen(x);
 	if (!flag->dot || flag->prec < 0)
 	{
 		if (flag->zero || flag->minus)
-			cnt += flag->minus ? put_str(x, len) : handle_width(flag, len);
+			*cnt += flag->minus ? put_str(x, len) : handle_width(flag, len);
 		else
-			cnt += handle_width(flag, len);
-		cnt += flag->minus ? handle_width(flag, len) : put_str(x, len);
+			*cnt += handle_width(flag, len);
+		*cnt += flag->minus ? handle_width(flag, len) : put_str(x, len);
 	}
 	else if (flag->dot)
 	{
-		(!flag->minus && flag->prec >= 0) ? cnt += handle_width(flag, len) : 0;
-		cnt += handle_prec(flag, len);
-		cnt += put_str(x, len);
-		flag->minus ? (cnt += handle_width(flag, len)) : 0;
+		(!flag->minus && flag->prec >= 0) ? *cnt += handle_width(flag, len) : 0;
+		*cnt += handle_prec(flag, len);
+		*cnt += put_str(x, len);
+		flag->minus ? (*cnt += handle_width(flag, len)) : 0;
 	}
-	return (cnt);
 }
 
 int					handle_x(va_list ap, t_flag *flag)
@@ -88,7 +85,7 @@ int					handle_x(va_list ap, t_flag *flag)
 		x = ft_strdup("");
 	else
 		x = ft_itox(value_x, (flag->type == 'X'));
-	cnt += print_x(x, flag);
+	print_x(x, flag, &cnt);
 	free(x);
 	return (cnt);
 }

@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:06 by clim              #+#    #+#             */
-/*   Updated: 2021/02/15 11:25:50 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/15 12:10:35 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ static int		sanity_check(const char *format)
 					format++;
 			if (!is_specifier(*format))
 				return (-1);
-			else
-				return (0);
 		}
 		format++;
 	}

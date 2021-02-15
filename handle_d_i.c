@@ -6,13 +6,13 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 11:22:45 by clim              #+#    #+#             */
-/*   Updated: 2021/02/13 18:35:19 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/15 12:19:38 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			print_d(long long i, t_flag *flag, int *cnt)
+static void		print_d(long long i, t_flag *flag, int *cnt)
 {
 	int			len;
 
