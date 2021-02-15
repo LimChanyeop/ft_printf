@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:06 by clim              #+#    #+#             */
-/*   Updated: 2021/02/13 20:28:49 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/15 11:25:50 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ static void		init_flag(t_flag *flag)
 	flag->type = '\0';
 }
 
+static int is_specifier(char c)
+{
+	return (c == 'c' ||  c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' \
+			|| c == 'x' || c == 'X' || c == '%');
+}
+
 static int		type_idx(char *format)
 {
 	int			i;
@@ -31,14 +37,42 @@ static int		type_idx(char *format)
 	i = 1;
 	while (format[i])
 	{
-		if (format[i] == 'c' || format[i] == 's' || format[i] == 'p' \
-				|| format[i] == 'd' || format[i] == 'i' || format[i] == 'u' \
-				|| format[i] == 'x' || format[i] == 'X' || format[i] == '%')
+		if (is_specifier(format[i]))
 			return (i);
 		else
 			i++;
 	}
 	return (-1);
+}
+
+static int		sanity_check(const char *format)
+{
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			while (*format == '0' || *format == '-')
+				format++;
+			if (*format == '*')
+				format++;
+			else
+				while (ft_isdigit(*format))
+					format++;
+			if (*format == '.')
+				format++;
+			if (*format == '*')
+				format++;
+			else
+				while (ft_isdigit(*format))
+					format++;
+			if (!is_specifier(*format))
+				return (-1);
+			else
+				return (0);
+		}
+		format++;
+	}
+	return (0);
 }
 
 static int		handle(va_list ap, t_flag *flag, char type)
@@ -72,6 +106,8 @@ int				ft_printf(const char *format, ...)
 
 	ret_cnt = 0;
 	va_start(ap, format);
+	if (sanity_check(format) == -1)
+		return (-1);
 	while (*format)
 	{
 		if (*format == '%')
