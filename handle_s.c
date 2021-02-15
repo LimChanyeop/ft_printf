@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 11:01:33 by clim              #+#    #+#             */
-/*   Updated: 2021/02/15 12:17:16 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/15 18:04:04 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int					put_str(char *s, int len)
 
 static void			print_s(char *s, t_flag *flag, int *cnt)
 {
-
 	if (!flag->minus)
 	{
 		*cnt += handle_width(flag, flag->len);
@@ -46,7 +45,7 @@ int					handle_s(va_list ap, t_flag *flag)
 	flag->zero = 0;
 	value_s = va_arg(ap, char *);
 	if (!value_s)
-		value_s = ft_strdup("(null)");
+		value_s = "(null)";
 	flag->len = ft_strlen(value_s);
 	if (flag->dot && flag->prec >= 0)
 		ft_strlen(value_s) > (size_t)flag->prec ? flag->len = flag->prec : 0;

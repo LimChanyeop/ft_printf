@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 16:27:35 by clim              #+#    #+#             */
-/*   Updated: 2021/02/15 12:14:58 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/15 16:08:41 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int					handle_p(va_list ap, t_flag *flag)
 		p = ft_strdup("0x");
 	else
 		p = ft_itop(value_p);
+	if (!p)
+		return (-1);
 	print_p(p, flag, &cnt);
 	free(p);
 	return (cnt);

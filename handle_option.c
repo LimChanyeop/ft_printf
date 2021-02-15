@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 19:12:36 by clim              #+#    #+#             */
-/*   Updated: 2021/02/13 19:59:58 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/15 16:07:22 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ int				handle_prec(t_flag *flag, int len)
 int				handle_width(t_flag *flag, int len)
 {
 	int			cnt;
-	int			l1;
+	int			new_len;
 	int			i;
 
 	cnt = 0;
-	l1 = len;
+	new_len = len;
 	if (flag->type != 's' && flag->type != '%')
-		l1 = len > flag->prec ? len : flag->prec;
+		new_len = len > flag->prec ? len : flag->prec;
 	i = flag->width;
-	while (i-- > l1)
+	while (i-- > new_len)
 		flag->zero ? (cnt += write(1, "0", 1)) : (cnt += write(1, " ", 1));
 	return (cnt);
 }

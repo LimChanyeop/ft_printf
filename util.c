@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:17:59 by clim              #+#    #+#             */
-/*   Updated: 2021/02/13 20:18:29 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/15 18:04:40 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				ft_putnbr(long long n)
 	return (cnt);
 }
 
-int				get_int_len(long long i, t_flag *flag)
+int				digit_len(long long i, t_flag *flag)
 {
 	int			len;
 
@@ -50,4 +50,10 @@ int				get_int_len(long long i, t_flag *flag)
 		len++;
 	}
 	return (len);
+}
+
+int				is_specifier(char c)
+{
+	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' \
+				|| c == 'u' || c == 'x' || c == 'X' || c == '%');
 }

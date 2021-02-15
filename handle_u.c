@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:06:58 by clim              #+#    #+#             */
-/*   Updated: 2021/02/15 12:23:17 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/15 14:16:19 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void			print_u(unsigned int i, t_flag *flag, int *cnt)
 {
 	int				len;
 
-	len = get_int_len(i, flag);
+	len = digit_len(i, flag);
 	if (!flag->dot || flag->prec < 0)
 	{
 		if (flag->zero || flag->minus)
