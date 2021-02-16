@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 20:24:34 by clim              #+#    #+#             */
-/*   Updated: 2021/02/15 18:04:21 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/16 18:30:49 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				set_option(va_list ap, t_flag *flag, char *format)
 	int			t_idx;
 
 	i = 1;
-	init_flag(&flag);
+	init_flag(flag);
 	t_idx = type_idx((char *)format);
 	flag->type = format[t_idx];
 	while ((format[i] == '0' || format[i] == '-'))
