@@ -6,7 +6,7 @@
 /*   By: clim <clim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:06 by clim              #+#    #+#             */
-/*   Updated: 2021/02/15 18:03:23 by clim             ###   ########.fr       */
+/*   Updated: 2021/02/17 10:54:28 by clim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int		sanity_check(const char *format)
 {
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format++ == '%')
 		{
 			while (*format == '0' || *format == '-')
 				format++;
@@ -35,7 +35,6 @@ static int		sanity_check(const char *format)
 			if (!is_specifier(*format))
 				return (-1);
 		}
-		format++;
 	}
 	return (0);
 }
